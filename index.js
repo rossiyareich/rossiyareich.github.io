@@ -47,7 +47,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 scene.add(ambientLight, pointLight);
 Array(1000).fill().forEach(addStar);
 
-new Promise(resolve => setTimeout(resolve, 260)).then(animate);
+animate();
 
 var hasSeqOver = false;
 function animate() {
