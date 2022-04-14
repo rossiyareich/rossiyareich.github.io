@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "copy": "xcopy \"res\" \"dist\\res\" /E"
+    "copy": "xcopy \"res\" \"dist\\res\" /E",
+    "deploy": "npm run build & npm run copy & git add . & git add dist -f & git commit -m \"Adding dist\" & git push origin master & git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {
     "vite": "^2.9.2"

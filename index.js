@@ -23,7 +23,7 @@ const mtl = new MTLLoader();
 var cookie;
 mtl.load(
   'res/cookie1.mtl',
-  function (creator) {
+  async function (creator) {
     creator.preload();
     const loader = new OBJLoader();
     loader.load(
@@ -47,7 +47,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 scene.add(ambientLight, pointLight);
 Array(1000).fill().forEach(addStar);
 
-animate();
+new Promise(resolve => setTimeout(resolve, 260)).then(animate);
 
 var hasSeqOver = false;
 function animate() {
