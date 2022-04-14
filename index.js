@@ -16,16 +16,16 @@ const renderer = new THREE.WebGLRenderer(
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(new THREE.Color(0x02061c));
-camera.position.setZ(512);
+camera.position.setZ(64);
 renderer.render(scene, camera);
 
 const mtl = new MTLLoader();
+const loader = new OBJLoader();
 var cookie;
 mtl.load(
   'res/cookie1.mtl',
   async function (creator) {
     creator.preload();
-    const loader = new OBJLoader();
     loader.load(
       'res/cookie1.obj',
       function (object) {
@@ -53,12 +53,12 @@ var hasSeqOver = false;
 function animate() {
   requestAnimationFrame(animate);
 
-  const z = camera.position.z;
-  if (!hasSeqOver && z > 4)
-    camera.position.setZ(z - 4);
-  else hasSeqOver = true;
-
   if (cookie) {
+    const z = camera.position.z;
+    if (!hasSeqOver && z > 4)
+      camera.position.setZ(z - 4);
+    else hasSeqOver = true;
+
     cookie.rotation.x += 0.01;
     cookie.rotation.y += 0.005;
     cookie.rotation.z += 0.01;
