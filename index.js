@@ -16,7 +16,7 @@ const renderer = new THREE.WebGLRenderer(
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(new THREE.Color(0x02061c));
-camera.position.setZ(3);
+camera.position.setZ(512);
 renderer.render(scene, camera);
 
 const mtl = new MTLLoader();
@@ -49,8 +49,14 @@ Array(1000).fill().forEach(addStar);
 
 animate();
 
+var hasSeqOver = false;
 function animate() {
   requestAnimationFrame(animate);
+
+  const z = camera.position.z;
+  if (!hasSeqOver && z > 4)
+    camera.position.setZ(z - 4);
+  else hasSeqOver = true;
 
   if (cookie) {
     cookie.rotation.x += 0.01;
